@@ -70,5 +70,15 @@ $(document).bind('path:success:/questions', function(event, result) {
 	log(result);
 	var template = $('#templates div#questions').html();
 	log(template);
+	var bind_string = _.map(result.questions, function(q) {
+	  return 'path:success:/questions/' + q.question_id.toString();
+	}).join(' ');
+	console.log(bind_string);
+	$(document).bind(bind_string, function(event, result2) {
+	  log(result2);
+	  var template2 = $('#templates div#question').html();
+	  $('section#detail').html($.mustache(template2, result2));
+	});
 	$('section#content').html($.mustache(template, result));
 });
+

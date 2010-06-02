@@ -3,11 +3,12 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-	<title>StackOverflow | Game</title>
+	<title>StackBuffer | Nice interface to StackOverflow.com</title>
 
 	<link rel="stylesheet" type="text/css" href="stylesheets/all.css" />
 	<script src="javascripts/jquery-1.4.2.js"></script>
 	<script src="javascripts/mustache.js"></script>
+	<script src="javascripts/underscore.js"></script>
 	<script src="javascripts/layout.seg.js"></script>
 	<script src="javascripts/application.js"></script>
 
@@ -23,17 +24,20 @@
 <body>
 
   <header>
-	</header>
-
-  <section id="page">
-		<nav id="navigation">
+    <nav id="navigation" class="clear">
 			<ul>
 				<li><a href="#/stats">Statistics</a></li>
 				<li><a href="#/questions">Questions</a></li>
 				<li><a href="#/users">Users</a></li>
 			</ul>
 		</nav>
+	</header>
+
+  <section id="page">
     <section id="content">
+      
+    </section>
+    <section id="detail">
       
     </section>
   </section>
@@ -52,7 +56,7 @@
         {{#users}}
         <user>
           <h2>{{display_name}}</h2>
-          <strong>Reputation:<strong> {{reputation}}<br />
+          <strong>Reputation:</strong> {{reputation}}<br />
           <strong>Location:</strong> {{location}}
           <p>
             {{{about_me}}}
@@ -63,13 +67,12 @@
     </div>
     
     <div id="questions">
-      <questions id="q">
+      <questions>
         {{#questions}}
         <question>
-          <h2>{{title}}<h2>
-          <h3>{{#owner}}{{display_name}}{{/owner}}</h3>
+          <a href="#/questions/{{question_id}}">{{title}}</a>
+          <h3>by {{#owner}}{{display_name}}{{/owner}}</h3>
           <p>
-            <strong>Answers:</strong> {{answer_count}}<br />
             <tags>
             {{%IMPLICIT-ITERATOR iterator=tag}}
             {{#tags}}
@@ -81,6 +84,16 @@
         {{/questions}}
       </questions>
     </div>
+    
+    <div id="question">
+      {{#questions}}
+        <h1>{{title}}</h1>
+        <p>
+          {{{body}}}
+        </p>
+      {{/questions}}
+    </div>
+    
   </section>
   
 </body>

@@ -17,26 +17,25 @@ header {
   min-width: 700px;
 }
 
-#navigation {
+#content {
   position: absolute;
   bottom: 0;
   top: 0;
   
   height: 100%;
-  width: 200px;
-  padding-right: 22px;
+  width: 400px;
   
   overflow-x: hidden;
   overflow-y: auto;
   
-  background: #E2E7ED;
+  background: transparent;
   border-right: 1px solid #97a9b6;
 }
 
-#content {
+#detail {
   position: absolute;
   bottom: 0;
-  left: 223px; /* inherited from #navigation[width]*/
+  left: 400px; /* inherited from #navigation[width]*/
   right: 0;
   top: 0;
   
@@ -45,6 +44,6 @@ header {
   
   overflow: auto;
   
-  background: #fff;
+  background: #ddd;
 }
 
