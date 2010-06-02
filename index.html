@@ -1,0 +1,87 @@
+<!DOCTYPE html> <!-- The new doctype -->
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+	<title>StackOverflow | Game</title>
+
+	<link rel="stylesheet" type="text/css" href="stylesheets/all.css" />
+	<script src="javascripts/jquery-1.4.2.js"></script>
+	<script src="javascripts/mustache.js"></script>
+	<script src="javascripts/layout.seg.js"></script>
+	<script src="javascripts/application.js"></script>
+
+	<!-- Internet Explorer HTML5 enabling script: -->
+	<!--[if IE]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<style type="text/css">
+			.clear { zoom: 1; display: block; }
+		</style>
+	<![endif]-->
+
+</head>
+<body>
+
+  <header>
+	</header>
+
+  <section id="page">
+		<nav id="navigation">
+			<ul>
+				<li><a href="#/stats">Statistics</a></li>
+				<li><a href="#/questions">Questions</a></li>
+				<li><a href="#/users">Users</a></li>
+			</ul>
+		</nav>
+    <section id="content">
+      
+    </section>
+  </section>
+  
+  <section id="templates" style="display:none;">
+    <div id="stats">
+      {{#statistics}}
+        <strong>Total answers:</strong> {{total_answers}}<br />
+        <strong>Total badges:</strong> {{total_badges}}<br />
+        <strong>Total comments:</strong> {{total_comments}}<br />
+      {{/statistics}}
+    </div>
+    
+    <div id="users">
+      <users>
+        {{#users}}
+        <user>
+          <h2>{{display_name}}</h2>
+          <strong>Reputation:<strong> {{reputation}}<br />
+          <strong>Location:</strong> {{location}}
+          <p>
+            {{{about_me}}}
+          </p>
+        </user>
+        {{/users}}
+      </users>
+    </div>
+    
+    <div id="questions">
+      <questions id="q">
+        {{#questions}}
+        <question>
+          <h2>{{title}}<h2>
+          <h3>{{#owner}}{{display_name}}{{/owner}}</h3>
+          <p>
+            <strong>Answers:</strong> {{answer_count}}<br />
+            <tags>
+            {{%IMPLICIT-ITERATOR iterator=tag}}
+            {{#tags}}
+            <tag>{{tag}}</tag>
+            {{/tags}}
+            </tags>
+          </p>
+        </question>
+        {{/questions}}
+      </questions>
+    </div>
+  </section>
+  
+</body>
+</html>

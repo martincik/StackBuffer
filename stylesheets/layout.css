@@ -1,0 +1,50 @@
+header {
+  background: #444;
+  color: #fff;
+  height: 50px;
+}
+
+#page {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+
+  overflow: auto;
+  padding: 0;
+  
+  min-width: 700px;
+}
+
+#navigation {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  
+  height: 100%;
+  width: 200px;
+  padding-right: 22px;
+  
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+  background: #E2E7ED;
+  border-right: 1px solid #97a9b6;
+}
+
+#content {
+  position: absolute;
+  bottom: 0;
+  left: 223px; /* inherited from #navigation[width]*/
+  right: 0;
+  top: 0;
+  
+  height: 100%;
+  min-width: 400px;
+  
+  overflow: auto;
+  
+  background: #fff;
+}
+

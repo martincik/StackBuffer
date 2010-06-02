@@ -1,0 +1,50 @@
+/** Reset CSS values for browsers **/
+
+html { color: #000; background: #fff; }
+
+* { margin: 0; padding: 0; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+
+fieldset,img { border: 0; }
+
+caption,th { text-align: left; }
+
+abbr,acronym { border: 0; font-variant: normal; }
+
+sup { vertical-align: text-top; }
+
+sub { vertical-align: text-bottom; }
+
+input,textarea,select { 
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: inherit; font-weight: inherit;
+}
+
+input,textarea,select { font-size: 100%; }
+
+legend { color: #000; }
+
+h1,h2,h3,h4,h5,h6,strong { font-weight: bold; }
+
+em { font-weight: bold; }
+
+ul,ol { margin: 0 0 20px 25px; }
+
+p { margin: 0 0 20px; }
+
+/** Redeclarations **/
+
+html { height: 100%; }
+
+body { height: 100%; overflow: hidden; font: 12px/1.3 "Helvetica
+Neue",Helvetica,Arial,sans-serif; }
+
+table { width: 100%; border-collapse: collapse; *width: auto; }
+
+div#primary_content_inner { *width: auto !important; }
+
+th,td { padding: 7px 17px 5px; text-align: left; }
+
+th { color: #666; line-height: 1; }
+
+a { outline: none; }

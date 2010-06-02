@@ -1,0 +1,77 @@
+@import 'reset.css';
+@import 'common.css';
+@import 'layout.css';
+
+header,footer,
+article,section,
+hgroup,nav,
+figure, 
+questions, question,
+tags, users, user {
+	display:block;
+}
+
+tag {
+  display: inline;
+}
+
+/** {
+  border: 1px solid #f00;
+}
+*/
+
+question {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+question h2 {
+  font-size: 16px;
+}
+
+question h3 {
+  font-style: italic;
+  font-weight: normal;
+}
+
+question tag {
+  -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	
+	border: 1px solid #ccc;
+	background: #ddd;
+  padding: 2px 5px;
+  
+	text-transform: uppercase;
+	font-size: 9px;
+}
+
+#navigation ul {
+  margin: 0;
+  padding: 10px;
+}
+
+#navigation ul li {
+  padding-bottom: 5px;
+  text-align: right;
+}
+
+#navigation ul li a {
+  padding: 4px 8px;
+  
+  border: 1px solid #97a9b6;
+  background: #D1D8E2;
+  width: 180px;
+  display: block;
+	
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	
+	text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
+	text-transform: uppercase;
+	font-size: 11px;
+	text-decoration: none;
+}
+
