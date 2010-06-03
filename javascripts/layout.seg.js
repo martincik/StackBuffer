@@ -102,7 +102,7 @@ var Layout = {
     
     if (data) {
       ajax['data'] = data;
-			ajax['data'].merge({ apiKey: '-c3cp3WHf0C9apKxTIFKdQ' });
+			ajax['data'].merge({ apiKey: 'c3cp3WHf0C9apKxTIFKdQ' });
     }
     
     $.ajax(ajax);
@@ -241,7 +241,7 @@ var Layout = {
       url				: Layout.api_url + path,
       dataType	: 'jsonp',
 			jsonp		 	: 'jsonp',
-			data			: { apiKey: '-c3cp3WHf0C9apKxTIFKdQ', body: true },
+			data			: { apiKey: 'c3cp3WHf0C9apKxTIFKdQ', body: true },
       success		: function(json) {
 //        Layout.onSuccess(json);
         console.log('path:success:' + path);

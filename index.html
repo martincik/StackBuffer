@@ -10,6 +10,7 @@
 	<script src="javascripts/mustache.js"></script>
 	<script src="javascripts/underscore.js"></script>
 	<script src="javascripts/layout.seg.js"></script>
+	<script src="javascripts/prettify.js"></script>
 	<script src="javascripts/application.js"></script>
 
 	<!-- Internet Explorer HTML5 enabling script: -->
@@ -26,9 +27,9 @@
   <header>
     <nav id="navigation" class="clear">
 			<ul>
-				<li><a href="#/stats">Statistics</a></li>
-				<li><a href="#/questions">Questions</a></li>
-				<li><a href="#/users">Users</a></li>
+				<li><a class="green" href="#/stats">Statistics</a></li>
+				<li><a class="purple" href="#/questions">Questions</a></li>
+				<li><a class="red" href="#/users">Users</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -44,11 +45,13 @@
   
   <section id="templates" style="display:none;">
     <div id="stats">
+      <div id="statistics">
       {{#statistics}}
         <strong>Total answers:</strong> {{total_answers}}<br />
         <strong>Total badges:</strong> {{total_badges}}<br />
         <strong>Total comments:</strong> {{total_comments}}<br />
       {{/statistics}}
+      </div>
     </div>
     
     <div id="users">
@@ -70,28 +73,28 @@
       <questions>
         {{#questions}}
         <question>
-          <a href="#/questions/{{question_id}}">{{title}}</a>
+          <a href="#/questions/{{question_id}}">{{title}} &raquo;</a><br />
           <h3>by {{#owner}}{{display_name}}{{/owner}}</h3>
-          <p>
-            <tags>
-            {{%IMPLICIT-ITERATOR iterator=tag}}
-            {{#tags}}
-            <tag>{{tag}}</tag>
-            {{/tags}}
-            </tags>
-          </p>
+          <tags>
+          {{%IMPLICIT-ITERATOR iterator=tag}}
+          {{#tags}}
+          <tag>{{tag}}</tag>
+          {{/tags}}
+          </tags>
         </question>
         {{/questions}}
       </questions>
     </div>
     
     <div id="question">
+      <div id="question-detail">
       {{#questions}}
         <h1>{{title}}</h1>
         <p>
           {{{body}}}
         </p>
       {{/questions}}
+      </div>
     </div>
     
   </section>

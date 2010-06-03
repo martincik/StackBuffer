@@ -1,14 +1,14 @@
 header {
   background: #444;
   color: #fff;
-  height: 50px;
+  height: 0px;
 }
 
 #page {
   position: fixed;
   left: 0;
   right: 0;
-  top: 50px;
+  top: 100px;
   bottom: 0;
 
   overflow: auto;
@@ -23,7 +23,7 @@ header {
   top: 0;
   
   height: 100%;
-  width: 400px;
+  width: 500px;
   
   overflow-x: hidden;
   overflow-y: auto;
@@ -35,7 +35,7 @@ header {
 #detail {
   position: absolute;
   bottom: 0;
-  left: 400px; /* inherited from #navigation[width]*/
+  left: 500px; /* inherited from #navigation[width]*/
   right: 0;
   top: 0;
   
