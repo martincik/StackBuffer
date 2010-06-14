@@ -23,13 +23,12 @@ header {
   top: 0;
   
   height: 100%;
-  width: 500px;
+  width: 499px;
   
   overflow-x: hidden;
   overflow-y: auto;
-  
+
   background: transparent;
-  border-right: 1px solid #97a9b6;
 }
 
 #detail {
@@ -40,10 +39,10 @@ header {
   top: 0;
   
   height: 100%;
-  min-width: 400px;
+  min-width: 600px;
   
   overflow: auto;
   
-  background: #ddd;
+  background: #FFF9DB;
 }
 

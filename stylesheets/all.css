@@ -1,7 +1,7 @@
-@import 'reset.css';
-@import 'common.css';
-@import 'layout.css';
-@import 'prettify.css';
+@import url('reset.css');
+@import url('common.css');
+@import url('layout.css');
+@import url('prettify.css');
 
 header,footer,
 article,section,
@@ -16,6 +16,95 @@ tag {
   display: inline;
 }
 
+a#toggleContent,
+a#toggleContent:hover {
+  background: #888;
+  color: white;
+  display: block;
+  font-size: 20px;
+  font-weight: normal;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  left: 500px;
+  z-index: 1000;
+  text-decoration: none;
+  text-align: center;
+  width: 17px;
+	opacity: 0.4;
+}
+
+header #navigation {
+	background: #BCBCBC;
+	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
+	border-bottom:1px solid #86888A;
+	border-top:1px solid #A4AAAF;
+}
+
+#logo {
+  float: left;
+  width: 200px;
+  padding: 12px 15px;
+}
+
+#logo h2 {
+  color: #111;
+  line-height: .8em;
+}
+
+#logo p {
+  font-size: 12px;
+  color: #666;
+}
+
+#search {
+  float: right;
+  margin: 10px;
+  
+	width: 500px;
+	
+	background: #BCBCBC;
+	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+#search p {
+  padding: 5px;
+}
+
+#search label {
+  float: left;
+  display: block;
+  text-align: middle;
+  padding: 7px 10px 7px 12px;
+  font-size: 14px;
+  font-weight: bold;
+
+	background: #BCBCBC;
+	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
+
+	-moz-border-radius: 7px 0 0 7px;
+	-webkit-border-radius: 7px 0 0 7px;
+	border-radius: 7px 0 0 7px;	
+}
+
+#search input {
+  float: left;
+
+	-moz-border-radius: 0 7px 7px 0;
+	-webkit-border-radius: 0 7px 7px 0;
+	border-radius: 7px;
+	border: 1px solid #fff;
+  
+  padding: 6px 7px;
+  font-size: 14px;
+  font-style: italic;
+  width: 440px;
+	color: #888;
+}
+
 /** {
   border: 1px solid #f00;
 }
@@ -27,7 +116,6 @@ tag {
 
 question {
   padding: 15px;
-  border-bottom: 1px solid #ccc;
   color: #999;
 }
 
@@ -49,7 +137,11 @@ question h3 {
 }
 
 question:nth-child(2n+1) { background-color: white; }
-question:nth-child(2n) { background-color: #EAEEF3; }
+question:nth-child(2n) { 
+  background: #EFEFEF;
+	background: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#EFEFEF));
+	border-bottom: 1px solid #ccc;
+}
 
 question tags {
   padding-top: 10px;
@@ -60,40 +152,37 @@ question tag {
 	border-radius: 5px;
 	
   padding: 4px 7px;
-  color: #fff;
   line-height: 2.2em;
   
 	text-transform: uppercase;
 	font-size: 10px;
-	
-	background: #296d07;
-  background: -webkit-gradient(linear, left top, left bottom, from(#555), to(#888));
 }
 
 #question-detail {
-  margin: 15px;
-  padding: 20px;
-  
-  -moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	
-	background: #fff;
-	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-  
-	-webkit-box-shadow: 0 2px 4px rgba(0,0,0,.6);
-  -moz-box-shadow: 0 2px 4px rgba(0,0,0,.6);
-  box-shadow: 0 2px 4px rgba(0,0,0,.6);
+  padding: 30px;
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 600px;
 }
 
-#question-detail p {
-  padding: 10px 0;
+#question-detail h1 {
+  font-size: 14pt;
+  border-bottom: 1px solid #111;
+}
+
+#question-detail p,
+#question-detail li {
+  padding: 5px 0;
+  line-height: 1.4em;
+  font-size: 12pt;
+  font-family: Georgia, sans;
 }
 
 #question-detail pre {
   overflow: auto;
   width: auto;
-  background: transparent;
+  background: #fff;
+  margin: 10px 0;
 }
 
 #question-detail code {
@@ -117,11 +206,11 @@ question tag {
   padding: 6px 12px;
   
   color: #fff;
-  background: -webkit-gradient(linear, left top, left bottom, from(#70ce31), to(#2b6a0a));
+  background: -webkit-gradient(linear, left top, left bottom, from(#316ACE), to(#0A366A));
   
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
   
   text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
   text-transform: uppercase;

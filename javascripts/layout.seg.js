@@ -102,8 +102,11 @@ var Layout = {
     
     if (data) {
       ajax['data'] = data;
-			ajax['data'].merge({ apiKey: 'c3cp3WHf0C9apKxTIFKdQ' });
+      ajax['data'].merge({ apiKey: '-c3cp3WHf0C9apKxTIFKdQ' });
+    } else {
+      ajax['data'] = { apiKey: '-c3cp3WHf0C9apKxTIFKdQ' };
     }
+    
     
     $.ajax(ajax);
   },
@@ -155,20 +158,26 @@ var Layout = {
       $('form').removeErrors();
     });
     
-    $('form').live('submit', function(event) {
-      var $form        = $(this),
-          data_type   = $form.attr('data-type') || 'json',
+    $('form').livequery('submit', function(event) {
+      log("Form:");
+      log($(this));
+      event.preventDefault();
+      var $form       = $(this),
+          data_type   = $form.attr('data-type') || 'jsonp',
           remote_form = $form.attr('action').substr(0, 2) == '#/';
       
       if (!remote_form) {
         return true;
       }
       
+      log($form);
+      try {
+        
       $form.ajaxSubmit({
-        url       : $form.attr('action').replace(/^#/, ''),
+        url       : Layout.api_url + $form.attr('action').replace(/^#/, ''),
         dataType  : data_type,
-        data      : {iframe: 1},
-        closeKeepAlive: $.browser.safari ? '/admin/connection_close' : false,
+        jsonp     : 'jsonp',
+        data      : { apiKey: '-c3cp3WHf0C9apKxTIFKdQ'},
         beforeSubmit: function(data, form, options) {
           $form.trigger('form:beforeSubmit', [data, form, options]);
         },
@@ -193,17 +202,30 @@ var Layout = {
             $errors_container.showErrors(json.errors);
             $form.trigger('form:error', [json]);
           } else {
-            Layout.onSuccess(json);
+            //Layout.onSuccess(json);
+            log("form ajax success");
+            log($form);
+            log($('form#searchform'));
+            log($form[0] === $('form#searchform')[0]);
+//            $("#searchform").trigger('form::success', [json]);
             $form.trigger('form:success', [json]);
           }
         }, 
         error: function(response, status, error) {
           $form.trigger('form:error', [response, status, error]);
+          alert(error);
         },
         complete: function() {
+          log("form ajax complete");
           $form.trigger('form:complete');
         }
       });
+      
+    }  catch(err)
+        {
+          log(err);
+          return false;
+        }
       
       return false;
     });
@@ -241,7 +263,7 @@ var Layout = {
       url				: Layout.api_url + path,
       dataType	: 'jsonp',
 			jsonp		 	: 'jsonp',
-			data			: { apiKey: 'c3cp3WHf0C9apKxTIFKdQ', body: true },
+			data			: { apiKey: '-c3cp3WHf0C9apKxTIFKdQ', body: true },
       success		: function(json) {
 //        Layout.onSuccess(json);
         console.log('path:success:' + path);
@@ -295,21 +317,6 @@ var Layout = {
 //    Layout.applyJSON(json);
     $(document).trigger('layout:success');
     Layout.current_xhr = null;
-  },
-  
-  applyJSON: function(json) {
-    for(action in json) {
-      var selectors = json[action];
-      switch(action) {
-        case 'replace'      : for(selector in selectors) $(selector).html(selectors[selector]);            break;
-        case 'append'       : for(selector in selectors) $(selector).append(selectors[selector]);          break;
-        case 'prepend'      : for(selector in selectors) $(selector).prepend(selectors[selector]);         break;
-        case 'replaceWith'  : for(selector in selectors) $(selector).replaceWith(selectors[selector]);     break;
-        case 'insertBefore' : for(selector in selectors) $(selectors[selector]).insertBefore($(selector)); break;
-        case 'sidebar'      : Sidebar.add(selectors);                                                      break;
-        case 'remove'       : $(selectors.join(',')).remove();                                             break;
-      }
-    }
   },
   
   handlePageLoad: function() {
