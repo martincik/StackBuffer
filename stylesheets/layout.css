@@ -1,14 +1,8 @@
-header {
-  background: #444;
-  color: #fff;
-  height: 0px;
-}
-
 #page {
   position: fixed;
   left: 0;
   right: 0;
-  top: 100px;
+  top: 104px;
   bottom: 0;
 
   overflow: auto;
@@ -28,7 +22,7 @@ header {
   overflow-x: hidden;
   overflow-y: auto;
 
-  background: transparent;
+  background: rgb(224, 236, 250);
 }
 
 #detail {
@@ -43,6 +37,7 @@ header {
   
   overflow: auto;
   
-  background: #FFF9DB;
+  background: #FFFFD8;
+  background: -webkit-gradient(linear, left top, left bottom, from(#FFFFD8), to(#FCF6EF));
 }
 

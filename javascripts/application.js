@@ -148,7 +148,7 @@ function hideCode() {
       d = $("#toggleContent");
   
   c.animate({ left: "-" + a + "px" }, "easeOutQuad", function() {
-    $("#toggleContent").data("state", "closed").html("&rarr;").toggleClass("collapsed");
+    $("#toggleContent").data("state", "closed").toggleClass("collapsed");
   });
   d.animate({ left: 0 }, "easeOutQuad");
   b.animate({ left: 0 }, "easeOutQuad");
@@ -161,7 +161,7 @@ function showCode() {
       d = $("#toggleContent");
   
   c.animate({ left: 0 }, "easeInQuad", function() {
-    $("#toggleContent").data("state", "open").html("&larr;").toggleClass("collapsed");
+    $("#toggleContent").data("state", "open").toggleClass("collapsed");
   });
   d.animate({ left: a + "px" }, "easeInQuad");
   b.animate({ left: a + "px" }, "easeInQuad");

@@ -16,9 +16,15 @@ tag {
   display: inline;
 }
 
+#header {
+  background: #678090;  
+  background: -webkit-gradient(linear, left top, left bottom, from(#6F9DBE), to(#0A366A));
+  border-bottom: 1px solid #FFFFD8;
+}
+
 a#toggleContent,
 a#toggleContent:hover {
-  background: #888;
+  background: #ddd;
   color: white;
   display: block;
   font-size: 20px;
@@ -30,14 +36,21 @@ a#toggleContent:hover {
   z-index: 1000;
   text-decoration: none;
   text-align: center;
-  width: 17px;
-	opacity: 0.4;
+  width: 8px;
+  opacity: .8;
+	-webkit-box-shadow: 1px 0px 3px rgba(0,0,0,.4);
+  -moz-box-shadow: 1px 0px 3px rgba(0,0,0,.4);
+  box-shadow: 1px 0px 3px rgba(0,0,0,.4);
+  border-right: 1px solid #999;
+  border-left: 1px solid #999;
 }
 
-header #navigation {
+#navigation {
 	background: #BCBCBC;
-	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
-	border-bottom:1px solid #86888A;
+  background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
+  background: -webkit-gradient(linear, left top, left bottom, from(#F7A700), to(#F9CA69));
+	
+  border-bottom:1px solid #999;
 	border-top:1px solid #A4AAAF;
 }
 
@@ -48,13 +61,15 @@ header #navigation {
 }
 
 #logo h2 {
-  color: #111;
-  line-height: .8em;
+  color: #fff;
+  line-height: 1em;
+  text-shadow:2px 2px 2px #333333;
 }
 
 #logo p {
   font-size: 12px;
-  color: #666;
+  color: #fff;
+  text-shadow:1px 1px 1px #333333;
 }
 
 #search {
@@ -117,6 +132,7 @@ header #navigation {
 question {
   padding: 15px;
   color: #999;
+  border-bottom: 1px solid #ccc;
 }
 
 question a,
@@ -136,13 +152,6 @@ question h3 {
   color: #97A9B6;
 }
 
-question:nth-child(2n+1) { background-color: white; }
-question:nth-child(2n) { 
-  background: #EFEFEF;
-	background: -webkit-gradient(linear, left top, left bottom, from(#DFDFDF), to(#EFEFEF));
-	border-bottom: 1px solid #ccc;
-}
-
 question tags {
   padding-top: 10px;
 }
@@ -157,6 +166,9 @@ question tag {
 	text-transform: uppercase;
 	font-size: 10px;
 }
+
+question:nth-child(2n+1) { background-color: rgb(224, 236, 250); }
+question:nth-child(2n) { background: #fff; }
 
 #question-detail {
   padding: 30px;
@@ -207,6 +219,7 @@ question tag {
   
   color: #fff;
   background: -webkit-gradient(linear, left top, left bottom, from(#316ACE), to(#0A366A));
+  background: -webkit-gradient(linear, left top, left bottom, from(#678090), to(#0A366A));
   
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
