@@ -96,6 +96,10 @@ function processQuestionsResult(result) {
 	}).join(' ');
 	
   _.each(result.questions, function(q) {
+    var newDate = new Date( );
+    newDate.setTime( q.creation_date*1000 );
+    
+    q.created_at = newDate.toDateString();
     q.tags = _.map(q.tags, function(t) {
       tag = new Object();
       tag.name = t;

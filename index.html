@@ -49,8 +49,11 @@
     <nav id="navigation">
 			<ul class="clearfix">
 				<li><a class="purple" href="#/questions">Questions</a></li>
-				<li><a class="green" href="#/stats">Statistics</a></li>
+				<li><a class="green" href="#/tags">Tags</a></li>
 				<li><a class="red" href="#/users">Users</a></li>
+				<li><a class="green" href="#/badges">Badges</a></li>
+				<li><a class="red" href="#/unanswered">Unaswered</a></li>
+				<li><a class="green" href="#/stats">Statistics</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -94,9 +97,14 @@
     <div id="questions">
       <questions>
         {{#questions}}
-        <question>
+        <question class="clearfix">
+          <ratings class="clearfix">
+            <up_vote_count>&uarr;&nbsp;{{up_vote_count}}</up_vote_count>
+            <answer_count>A&nbsp;{{answer_count}}</answer_count>
+          </ratings>
+
           <a href="#/questions/{{question_id}}">{{title}}&nbsp;&raquo;</a><br />
-          <h3>by {{#owner}}{{display_name}}{{/owner}}</h3>
+          <h3>by {{#owner}}{{display_name}}{{/owner}}&nbsp;on&nbsp;{{created_at}} viewed {{view_count}}x</h3>
           <tags>
           {{#tags}}
             <tag style="background-color: #{{backgroundColor}}; color: {{color}}">{{name}}</tag>

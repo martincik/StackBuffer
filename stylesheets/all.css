@@ -8,12 +8,32 @@ article,section,
 hgroup,nav,
 figure, 
 questions, question,
-tags, users, user {
+tags, users, user, ratings, up_vote_count, answer_count {
 	display:block;
 }
 
 tag {
   display: inline;
+}
+
+ratings {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+up_vote_count, answer_count {
+  padding: 4px 8px;
+  text-align: center;
+  background: #fff;
+  color: #777;
+  -moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+answer_count {
+  margin-top: 10px;
 }
 
 #header {
@@ -132,7 +152,7 @@ a#toggleContent:hover {
 question {
   padding: 15px;
   color: #999;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px dashed #ccc;
 }
 
 question a,
@@ -147,9 +167,9 @@ question a:active {
 question a:hover { background-color: yellow; }
 
 question h3 {
-  font-style: italic;
   font-weight: normal;
   color: #97A9B6;
+  line-height: 1.6em;
 }
 
 question tags {
@@ -172,6 +192,7 @@ question:nth-child(2n) { background: #fff; }
 
 #question-detail {
   padding: 30px;
+  padding-left: 35px;
   margin: 0 auto;
   max-width: 800px;
   min-width: 600px;
