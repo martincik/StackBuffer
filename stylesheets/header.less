@@ -1,6 +1,8 @@
+@import 'reset';
+@import 'common';
+
 #header {
-  background: #678090;  
-  background: -webkit-gradient(linear, left top, left bottom, from(#6F9DBE), to(#0A366A));
+  .background-linear(#678090, #6F9DBE, #0A366A);
   border-bottom: 1px solid #FFFFD8;
 }
 
@@ -28,8 +30,7 @@
   
 	width: 500px;
 	
-	background: #BCBCBC;
-	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
+	.background-linear(#BCBCBC, #CFD7E1, #B9C4D2);
 	.rounded;
 	
 	p {
@@ -44,9 +45,7 @@
     font-size: 14px;
     font-weight: bold;
 
-  	background: #BCBCBC;
-  	background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
-
+  	.background-linear(#BCBCBC, #CFD7E1, #B9C4D2);
     .rounded(7px 0 0 7px);
   }
   

@@ -1,7 +1,8 @@
+@import 'reset';
+@import 'common';
+
 #navigation {
-	background: #BCBCBC;
-  background: -webkit-gradient(linear, left top, left bottom, from(#CFD7E1), to(#B9C4D2));
-  background: -webkit-gradient(linear, left top, left bottom, from(#F7A700), to(#F9CA69));
+  .background-linear(#BCBCBC, #F7A700, #F9CA69);
 	
   border-bottom:1px solid #999;
 	border-top:1px solid #A4AAAF;
@@ -20,14 +21,10 @@
   
   ul li > a {
     padding: 6px 12px;
-
     color: #fff;
-    background: -webkit-gradient(linear, left top, left bottom, from(#316ACE), to(#0A366A));
-    background: -webkit-gradient(linear, left top, left bottom, from(#678090), to(#0A366A));
-
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    
+    .background-linear(#678090, #678090, #0A366A);
+    .rounded(5px);
 
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
     text-transform: uppercase;
