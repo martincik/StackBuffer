@@ -1,3 +1,16 @@
+header,footer,
+article,section,
+hgroup,nav,
+figure, 
+questions, question,
+tags, users, user, ratings, up_vote_count, answer_count {
+	display:block;
+}
+
+tag {
+  display: inline;
+}
+
 html {
   margin: 0 0 1px 0; /* force FF to show scrollbar to prevent page jumping */
   padding: 0;
@@ -138,4 +151,10 @@ h1 {
 
 .hot {
   border: 1px solid #f00 !important;
+}
+
+.rounded(@radius: 10px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  border-radius: @radius;
 }

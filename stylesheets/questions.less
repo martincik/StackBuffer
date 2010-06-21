@@ -1,0 +1,94 @@
+ratings {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 15px;
+}
+
+up_vote_count, answer_count {
+  padding: 4px 8px;
+  text-align: center;
+  background: #fff;
+  color: #777;
+  .rounded(10px);
+}
+
+answer_count {
+  margin-top: 10px;
+}
+
+question {
+  padding: 15px;
+  color: #999;
+  border-bottom: 1px dashed #ccc;
+  
+  a,
+  a:hover,
+  a:active {
+    font-size: 16px;
+    color: #0070CA;
+    font-weight: bold;
+    line-height: 1.4em;
+  }
+  
+  a:hover {
+    background-color: yellow;
+  }
+  
+  h3 {
+    font-weight: normal;
+    color: #97A9B6;
+    line-height: 1.6em;
+  }
+  
+  tags {
+    padding-top: 10px;
+  }
+  
+  tag {
+  	.rounded(5px);
+
+    padding: 4px 7px;
+    line-height: 2.2em;
+
+  	text-transform: uppercase;
+  	font-size: 10px;
+  }
+  
+}
+
+question:nth-child(2n+1) { background-color: rgb(224, 236, 250); }
+question:nth-child(2n) { background: #fff; }
+
+#question-detail {
+  padding: 30px;
+  padding-left: 35px;
+  margin: 0 auto;
+  max-width: 800px;
+  min-width: 600px;
+  
+  h1 {
+    font-size: 14pt;
+    border-bottom: 1px solid #111;
+  }
+  
+  p, 
+  li {
+    padding: 5px 0;
+    line-height: 1.4em;
+    font-size: 12pt;
+    font-family: Georgia, sans;
+  }
+  
+  pre {
+    overflow: auto;
+    width: auto;
+    background: #fff;
+    margin: 10px 0;
+  }
+  
+  code {
+    background: transparent;
+    font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
+  }
+  
+}

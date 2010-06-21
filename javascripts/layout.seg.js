@@ -72,7 +72,7 @@ var Layout = {
     jQuery(function($) {
       var needs_default_hash = !window.location.hash || (window.location.hash && !window.location.hash.match(/^#\/admin/));
       if (needs_default_hash) {
-      	window.location.hash = '#/stats';
+      	window.location.hash = '#/questions';
       }
       
       window.currentHash = window.location.hash;

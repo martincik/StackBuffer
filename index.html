@@ -26,8 +26,10 @@
        });
     //]]>
   </script>
-
-	<link rel="stylesheet" type="text/css" href="/stylesheets/all.css" />  
+  
+  <link rel="stylesheet/less" href="/stylesheets/all.less" type="text/css" />
+  <script src="http://lesscss.googlecode.com/files/less-1.0.21.min.js"></script>
+	
 </head>
 <body>
 
@@ -48,12 +50,20 @@
     </div>
     <nav id="navigation">
 			<ul class="clearfix">
-				<li><a class="purple" href="#/questions">Questions</a></li>
-				<li><a class="green" href="#/tags">Tags</a></li>
-				<li><a class="red" href="#/users">Users</a></li>
-				<li><a class="green" href="#/badges">Badges</a></li>
-				<li><a class="red" href="#/unanswered">Unaswered</a></li>
-				<li><a class="green" href="#/stats">Statistics</a></li>
+				<li>
+				  <a href="#/questions">Questions<span>&darr;</span></a>
+				  <ul style="width: 87px; display: hidden;">
+				    <li><span><a href="#">newest</a></span></li>
+				    <li><span><a href="#">featured</a></span></li>
+				    <li><span><a href="#">hot</a></span></li>
+				    <li><span><a href="#">votes</a></span></li>
+				    <li><span><a href="#">active</a></span></li>
+				  </ul>
+				</li>
+				<li><a href="#/tags">Tags</a></li>
+				<li><a href="#/users">Users</a></li>
+				<li><a href="#/badges">Badges</a></li>
+				<li><a href="#/unanswered">Unaswered</a></li>
 			</ul>
 		</nav>
 	</header>
