@@ -1,89 +1,34 @@
-/**
-  IMPORTANT: Requires this version of jquery 
-             until 1.3.3 comes out http://gist.github.com/186325
-
-  ALSO:      This is very dirty still and has not been 
-             abstracted for use. It is just solving our immediate problems.
-
-  Use cases that must pass (and should be tested someday):
-    * Clicking on links updates layout
-    * Click around a bit and then use back/forward buttons
-    * Make sure recursive loading is working (#/sections/23)
-    * Forms should send beforeSubmit, beforeSend, success, error, valid 
-      and invalid events
-    * Safari should send connection close url to ajaxSubmit for file uploads
-    * Should fire events for page loading, progress for each step and loaded
-*/
-
-(function ($) {
-  
-  $.mustache = function(template, view, partials) {
-    return Mustache.to_html(template, view, partials);
-  };
-  
-  // errors is an array of errors
-  // render :json => {:errors => @item.errors.full_messages}
-  function FormErrors(errors) {
-    var error_count = errors.length;
-    
-    function errorUl() {
-      var lis = '';
-      errors.forEach(function(error) {
-        lis += '<li>' + error + '</li>';
-      });
-      return '<ul>' + lis + '</ul>';
-    }
-
-    function errorHeading() {
-      var error_str = error_count === 1 ? 'error' : 'errors';
-      return '<h2>' + error_count + ' ' + error_str + ' prevented this form from being saved</h2>';
-    }
-    
-    this.html = function () {
-      var html = '';
-      html += '<div class="errorExplanation" id="errorExplanation">';
-      html += errorHeading();
-      html += errorUl();
-      html += '</div>';
-      return html;
-    };
-  }
-
-  $.fn.removeErrors = function () {
-    return this.each(function () {
-      $(this).find('.errorExplanation').remove();
-    });
-  };
-
-  $.fn.showErrors = function (errors) {
-    return this.each(function () {
-      $(this).removeErrors().prepend(new FormErrors(errors).html());
-    });
-  };
-})(jQuery);
+const API_VERSION = '0.9';
+const API_URI = 'http://api.stackoverflow.com/' + API_VERSION;
+const ROOT_URL = '#/questions';
 
 var Layout = {
   live_path_regex: {'loading':[], 'success':[]},
   current_xhr: null,
   loading: false,
-  api_url: 'http://api.stackoverflow.com/0.8',
+  api_url: API_URI,
   
   init: function() {
     jQuery(function($) {
       var needs_default_hash = !window.location.hash || (window.location.hash && !window.location.hash.match(/^#\/admin/));
       if (needs_default_hash) {
-      	window.location.hash = '#/questions';
+      	window.location.hash = ROOT_URL;
       }
       
       window.currentHash = window.location.hash;
       Layout.handlePageLoad();
       Layout.addObservers();
       Layout.makeBackFowardButtonsWork();
+      
+      // Init mustache for JQuery
+      $.mustache = function(template, view, partials) {
+        return Mustache.to_html(template, view, partials);
+      };
+      
+      // Toggle
+      $("#toggle-content").data("state","open").click(Layout.collapseContent);
+      $(document).shortkeys({ 'h': Layout.collapseContent });
     });
-  },
-  
-  destroy: function(url, options) {
-    Layout.post(url, {'_method':'delete'}, options);
   },
   
   post: function(url, data, options) {
@@ -136,21 +81,7 @@ var Layout = {
       }
       
       return false;
-    });
-    
-    $('.remote_destroy').live('click', function(event) {
-      var $target = $(this);
-      
-      confirmDialog('Are you sure you want to delete this?', {
-        ok: function() {
-          Layout.destroy($target.attr('href'), {
-            success: function(json) { $target.trigger('destroy:success', [json]); }
-          });
-        }
-      });
-      
-      return false;
-    });
+    });    
   },
   
   observeForms: function() {
@@ -170,7 +101,6 @@ var Layout = {
         return true;
       }
       
-      log($form);
       try {
         
       $form.ajaxSubmit({
@@ -203,11 +133,6 @@ var Layout = {
             $form.trigger('form:error', [json]);
           } else {
             //Layout.onSuccess(json);
-            log("form ajax success");
-            log($form);
-            log($('form#searchform'));
-            log($form[0] === $('form#searchform')[0]);
-//            $("#searchform").trigger('form::success', [json]);
             $form.trigger('form:success', [json]);
           }
         }, 
@@ -265,13 +190,12 @@ var Layout = {
 			jsonp		 	: 'jsonp',
 			data			: { apiKey: '-c3cp3WHf0C9apKxTIFKdQ', body: true },
       success		: function(json) {
-//        Layout.onSuccess(json);
-        console.log('path:success:' + path);
         $(document).trigger('path:success', [path, json]);
         $(document).trigger('path:success:' + path, [json]);
         if (options && options.success) {
           options.success();
         }
+        Layout.current_xhr = null;
       },
       complete: function() {
         if (options && options.complete) {
@@ -312,13 +236,6 @@ var Layout = {
     });
   },
   
-  onSuccess: function(json) {
-    $('li.item.loading').removeClass('loading');
-//    Layout.applyJSON(json);
-    $(document).trigger('layout:success');
-    Layout.current_xhr = null;
-  },
-  
   handlePageLoad: function() {
     var segments = window.location.hash.replace(/^#\//, '').split('/'),
         total    = segments.length,
@@ -348,6 +265,43 @@ var Layout = {
     
     // start the recursive loading of sections
     loadSectionsInOrder();
+  },
+  
+  // Toggle functionality
+
+  hideContent: function() {
+    var c = $("#content"), 
+        b = $("#detail"),
+        a = c.width(),
+        d = $("#toggle-content");
+
+    c.animate({ left: "-" + a + "px" }, "easeOutQuad", function() {
+      $("#toggle-content").data("state", "closed").toggleClass("collapsed");
+    });
+    d.animate({ left: 0 }, "easeOutQuad");
+    b.animate({ left: 0 }, "easeOutQuad");
+  },
+
+  showContent: function() {
+    var c = $("#content"),
+        b = $("#detail"),
+        a = c.width(),
+        d = $("#toggle-content");
+
+    c.animate({ left: 0 }, "easeInQuad", function() {
+      $("#toggle-content").data("state", "open").toggleClass("collapsed");
+    });
+    d.animate({ left: a + "px" }, "easeInQuad");
+    b.animate({ left: a + "px" }, "easeInQuad");
+  },
+
+  collapseContent: function() {
+    if ($('#toggle-content').data("state") == "open") {
+      Layout.hideContent();
+    } else {
+      Layout.showContent();
+    }
+    return false;
   }
 };
 

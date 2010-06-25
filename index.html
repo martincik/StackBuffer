@@ -6,19 +6,6 @@
 	<title>StackBuffer | awesome StackOverflow interface</title>
 
 	<script src='http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js' type='text/javascript'></script>
-	<script src="/javascripts/jquery-1.4.2.js"></script>
-  <!--script charset='utf-8' src='http://code.jquery.com/jquery-1.4.2.min.js' type='text/javascript'></script--> 
-	<script src="/javascripts/jquery.form.js"></script>
-	<script src="/javascripts/jquery.livequery.js"></script>
-	<script src="/javascripts/jquery.easing.js"></script>
-	<script src="/javascripts/jquery.shortkeys.js"></script>
-	<script src="/javascripts/md5.js"></script>
-	<script src="/javascripts/mustache.js"></script>
-	<script src="/javascripts/underscore.js"></script>
-	<script src="/javascripts/layout.seg.js"></script>
-	<script src="/javascripts/prettify.js"></script>
-	<script src="/javascripts/application.js"></script>
-
   <script type='text/javascript'> 
     //<![CDATA[
        CFInstall.check({
@@ -26,25 +13,36 @@
        });
     //]]>
   </script>
-  
-  <script type="text/javascript" charset="utf-8">
-      less.env = "development";
-      less.watch();
-  </script>
-  
 
+  <script src='http://code.jquery.com/jquery-1.4.2.min.js' type='text/javascript'></script> 
+	<script src="/javascripts/jquery.form.js"></script>
+	<script src="/javascripts/jquery.livequery.js"></script>
+	<script src="/javascripts/jquery.easing.js"></script>
+	<script src="/javascripts/jquery.shortkeys.js"></script>
+	<script src="/javascripts/md5.js"></script>
+	<script src="/javascripts/mustache.js"></script>
+	<script src="/javascripts/underscore.js"></script>
+	<script src="/javascripts/spinner.js"></script>
+	<script src="/javascripts/layout.js"></script>
+	<script src="/javascripts/prettify.js"></script>
+	<script src="/javascripts/questions.js"></script>
+	<script src="/javascripts/search.js"></script>
+	<script src="/javascripts/application.js"></script>
+  
   <link rel="stylesheet/less" href="/stylesheets/all.less" type="text/css" />
-
   <link rel="stylesheet/less" href="/stylesheets/header.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/layout.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/navigation.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/prettify.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/questions.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/slider.less" type="text/css" />
-  
-
+  <link rel="stylesheet/less" href="/stylesheets/spinner.less" type="text/css" />
 
   <script src="http://lesscss.googlecode.com/files/less-1.0.21.min.js"></script>
+  <script type="text/javascript" charset="utf-8">
+      less.env = "development";
+      less.watch();
+  </script>
 	
 </head>
 <body>
@@ -56,7 +54,7 @@
         <p>awesome Stackoverflow interface</p>
       </div>
       <div id="search">
-        <form id="search-form" action="#/search" method="get">
+        <form id="searchform" action="#/search" method="get">
           <p class="clearfix">
             <label>&darr;</label>
             <input tabindex="1" onfocus="if (this.value=='search...') this.value = ''" type="text" name="intitle" value="search..." maxlength="80">
@@ -69,23 +67,26 @@
 				<li>
 				  <a href="#/questions">Questions<span>&darr;</span></a>
 				  <ul style="width: 87px; display: hidden;">
-				    <li><span><a href="#">newest</a></span></li>
-				    <li><span><a href="#">featured</a></span></li>
-				    <li><span><a href="#">hot</a></span></li>
-				    <li><span><a href="#">votes</a></span></li>
-				    <li><span><a href="#">active</a></span></li>
+				    <li><span><a href="#/questions?sort=votes">votes</a></span></li>
+				    <li><span><a href="#/questions?sort=featured">featured</a></span></li>
+				    <li><span><a href="#/questions?sort=hot">hot</a></span></li>
+				    <li><span><a href="#/questions?sort=week">week</a></span></li>
+				    <li><span><a href="#/questions?sort=month">month</a></span></li>
 				  </ul>
 				</li>
-				<li><a href="#/tags">Tags</a></li>
-				<li><a href="#/users">Users</a></li>
-				<li><a href="#/badges">Badges</a></li>
 				<li><a href="#/unanswered">Unaswered</a></li>
+				<li class="delimiter tags"><a href="#/tags"><span>&nbsp;&nbsp;</span>Tags</a></li>
+				<li class="users"><a href="#/users"><span>&nbsp;&nbsp;</span>Users</a></li>
+				<li class="badges"><a href="#/badges"><span>&nbsp;&nbsp;</span>Badges</a></li>
+				
+				<li class="delimiter"><a href="#">About</a></li>
 			</ul>
 		</nav>
 	</header>
 
   <section id="page">
-    <a href="#" id="toggleContent" ></a>
+    <a href="#" id="toggle-content"></a>
+    <div id="content-spinner" class="spinner" style="display: none;"></div>
     <section id="content">
       
     </section>
@@ -122,6 +123,7 @@
     
     <div id="questions">
       <questions>
+        <h1>{{title}}</h1>
         {{#questions}}
         <question class="clearfix">
           <ratings class="clearfix">
@@ -132,8 +134,9 @@
           <a href="#/questions/{{question_id}}">{{title}}&nbsp;&raquo;</a><br />
           <h3>by {{#owner}}{{display_name}}{{/owner}}&nbsp;on&nbsp;{{created_at}} viewed {{view_count}}x</h3>
           <tags>
+          {{%IMPLICIT-ITERATOR}}
           {{#tags}}
-            <tag style="background-color: #{{backgroundColor}}; color: {{color}}">{{name}}</tag>
+            <tag>{{.}}</tag>
           {{/tags}}
           </tags>
         </question>
