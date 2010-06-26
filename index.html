@@ -131,7 +131,7 @@
             <answer_count>A&nbsp;{{answer_count}}</answer_count>
           </ratings>
 
-          <a href="#/questions/{{question_id}}">{{title}}&nbsp;&raquo;</a><br />
+          <a href="#/questions/{{question_relative_url}}">{{title}}&nbsp;&raquo;</a><br />
           <h3>by {{#owner}}{{display_name}}{{/owner}}&nbsp;on&nbsp;{{created_at}} viewed {{view_count}}x</h3>
           <tags>
           {{%IMPLICIT-ITERATOR}}
@@ -145,14 +145,53 @@
     </div>
     
     <div id="question">
-      <div id="question-detail">
-      {{#questions}}
+      <div class="question-detail">
         <h1>{{title}}</h1>
         <p>
           {{{body}}}
         </p>
-      {{/questions}}
+        {{#show_comments}}
+        <comments>
+        {{#comments}}
+          <comment>
+            <span>{{score}}</span>{{{body}}} &mdash;&nbsp;<strong>{{#owner}}{{display_name}}{{/owner}}</strong>
+          </comment>
+        {{/comments}}
+        </comments>
+        {{/show_comments}}
+        <answers>
+        </answers>
       </div>
+    </div>
+    
+    <div id="answers">
+      <h1>Answers</h1>
+      {{#answers}}
+      <answer class="clearfix">
+        <ratings class="clearfix">
+          <up_vote_count>&uarr;&nbsp;{{up_vote_count}}</up_vote_count>
+        </ratings>
+        <p>
+          {{{body}}}
+        </p>
+        <user>
+        {{#owner}}
+          <img src="http://www.gravatar.com/avatar/{{email_hash}}?s=40&d=mm&r=g" alt="{{display_name}} gravatar" />
+          <span class="display_name">{{display_name}}</span>
+          <span class="reputation">{{reputation}}</span>
+        {{/owner}}
+        </user>
+        {{#show_comments}}
+        <comments>
+        {{#comments}}
+          <comment>
+            <span>{{score}}</span>{{{body}}} &mdash;&nbsp;<strong>{{#owner}}{{display_name}}{{/owner}}</strong>
+          </comment>
+        {{/comments}}
+        </comments>
+        {{/show_comments}}
+      </answer>
+      {{/answers}}
     </div>
     
   </section>

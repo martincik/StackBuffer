@@ -184,6 +184,7 @@ var Layout = {
     path = path.replace(/^#/, '');
     $(document).trigger('path:loading', [path]);
     $(document).trigger('path:loading:' + path);
+    log("Loading: " + path);
     Layout.current_xhr = $.ajax({
       url				: Layout.api_url + path,
       dataType	: 'jsonp',

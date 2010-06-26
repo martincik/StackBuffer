@@ -1,10 +1,18 @@
 @import 'reset';
 @import 'common';
 
-ratings {
+#content ratings {
   float: right;
   margin-left: 15px;
   margin-bottom: 15px;
+}
+
+#detail ratings {
+  float: left;
+  margin: 0;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  margin-top: 15px;
 }
 
 up_vote_count, answer_count {
@@ -17,6 +25,10 @@ up_vote_count, answer_count {
 
 answer_count {
   margin-top: 10px;
+}
+
+user {
+  padding: 10px;
 }
 
 questions { 
@@ -72,7 +84,7 @@ question {
 question:nth-child(2n+1) { background-color: #EAEEF3; }
 question:nth-child(2n) { background: #fff; }
 
-#question-detail {
+div.question-detail {
   padding: 30px;
   padding-left: 35px;
   margin: 0 auto;
@@ -104,4 +116,31 @@ question:nth-child(2n) { background: #fff; }
     font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;
   }
   
+}
+
+comments {
+  border-top: 1px dotted #777;
+  margin-left: 15px;
+}
+
+comment {
+  border-bottom: 1px dotted #777;
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #FCF6EF;
+  
+  span {
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+}
+
+answers {
+  padding-top: 10px;
+}
+
+answer {
+  border-bottom: 1px solid #777;
+  padding-bottom: 15px;
 }
