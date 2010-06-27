@@ -189,7 +189,7 @@ var Layout = {
       url				: Layout.api_url + path,
       dataType	: 'jsonp',
 			jsonp		 	: 'jsonp',
-			data			: { apiKey: '-c3cp3WHf0C9apKxTIFKdQ', body: true },
+			data			: { apiKey: '-c3cp3WHf0C9apKxTIFKdQ' },
       success		: function(json) {
         $(document).trigger('path:success', [path, json]);
         $(document).trigger('path:success:' + path, [json]);

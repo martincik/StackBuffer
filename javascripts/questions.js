@@ -7,7 +7,7 @@ var Questions = {
   },
   
   reqisterQuestionsHandler: function() {
-    Layout.livePath('success', /questions$|questions[^\/]+/, function(event, result) {
+    Layout.livePath('success', /questions$|questions[^\/]+|questions\/unanswered/, function(event, result) {
       var title = 'Active questions'
       if (event[0].match(/votes/)) {
         title = 'Questions sorted by votes'
@@ -23,6 +23,9 @@ var Questions = {
       }
       if (event[0].match(/month/)) {
         title = 'Questions for this month'
+      }  
+      if (event[0].match(/unanswered/)) {
+        title = 'Unanswered questions'
       }
       
     	Questions.renderQuestions(result, title);
@@ -56,7 +59,7 @@ var Questions = {
     prettyPrint();
     
     // Now load the answers
-    Layout.load('#' + question.question_answers_url + '?comments=true&sort=votes');
+    Layout.load('#' + question.question_answers_url + '?comments=true&sort=votes&body=true');
   },
   
   // Default questions are active
@@ -70,7 +73,7 @@ var Questions = {
       var newDate = new Date( );
       newDate.setTime( q.creation_date*1000 );    
       q.created_at = newDate.toDateString();
-      q.question_relative_url = q.question_id + '?comments=true'
+      q.question_relative_url = q.question_id + '?comments=true&body=true'
 
       // q.tags = _.map(q.tags, function(t) {
       //   tag = new Object();
