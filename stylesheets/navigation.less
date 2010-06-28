@@ -3,9 +3,9 @@
 
 #navigation {
   .background-linear(#BCBCBC, #F7A700, #F9CA69);
-	
   border-bottom:1px solid #999;
 	border-top:1px solid #A4AAAF;
+	height: 36px;
 	
 	ul {
     margin: 0;
@@ -16,10 +16,11 @@
     padding-right: 5px;
     text-align: right;
     float: left;
-    list-style-type: none;    
+    list-style-type: none;
   }
   
-  ul li > a {
+  ul li > a,
+  ul li > a:hover {
     padding: 6px 12px;
     color: #fff;
     
@@ -36,7 +37,11 @@
   ul li ul li span {
     display: block;
     text-align: right;
-    width: 83px;
+    width: 87px;
+  }
+  
+  ul li ul.questions {
+    width: 87px;
   }
   
   ul li ul li a {
@@ -47,7 +52,8 @@
     font-weight: bold;
   }
   
-  ul li a > span {
+  ul li a > strong {
+    font-weight: normal;
     padding-left: 10px;
   }
   
@@ -62,11 +68,11 @@
   }
   
   li > ul {
-    display: none;
-    position: absolute;
-    top: 94px;
-    left: 10px;
-    background: #0c376b;
+    display: hidden;
+    position: relative;
+    height: 115px;
+    top: 0;
+    margin-left: -10px;
     background: #153f6f;
     opacity: .9;
 
@@ -74,6 +80,15 @@
     -webkit-border-bottom-left-radius: 5px;
     -moz-border-radius-bottomright: 5px;
     -webkit-border-bottom-right-radius: 5px;
+  }
+  
+  ul li > ul.users li span {
+    width: 70px;
+  }
+  
+  ul li > ul.users {
+    width: 75px;
+    height: 70px;
   }
   
   li > ul > li {
@@ -89,15 +104,18 @@
   }
   
   li.tags a > span {
-    background: transparent url('/images/tag.png') 1px left no-repeat;
+    background: transparent url('/images/tag.png') 1px 0 no-repeat;
+    background-repeat:no-repeat;
   }
 
   li.users a > span {
-    background: transparent url('/images/user.png') 1px left no-repeat;
+    background: transparent url('/images/user.png') 1px 0 no-repeat;
+    background-repeat:no-repeat;
   }
   
   li.badges a > span {
-    background: transparent url('/images/star.png') top left no-repeat;
+    background: transparent url('/images/star.png') 0 0 no-repeat;
+    background-repeat:no-repeat;
   }
   
 }

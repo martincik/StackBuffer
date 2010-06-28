@@ -34,8 +34,6 @@ var Questions = {
   
   reqisterQuestionHandler: function() {
     Layout.livePath('success', /questions\/[0-9]+.*$/, function (event, result) {
-      log(result);
-      log(event[0]);
       if (event[0].match(/answers/)) {
         Questions.renderAnswers(result);
       } else {
@@ -70,19 +68,8 @@ var Questions = {
     
     // Transform question object to readable form for users
     _.each(result.questions, function(q) {
-      var newDate = new Date( );
-      newDate.setTime( q.creation_date*1000 );    
-      q.created_at = newDate.toDateString();
+      q.created_at = Helpers.convertInt2DateTime(q.creation_date);
       q.question_relative_url = q.question_id + '?comments=true&body=true'
-
-      // q.tags = _.map(q.tags, function(t) {
-      //   tag = new Object();
-      //   tag.name = t;
-      //   var bgColor = md5(t).substr(0, 6);
-      //   tag.backgroundColor = 'white' // bgColor;
-      //   tag.color =  '#888' // adjustColour(bgColor);
-      //   return tag;
-      // });
     });
 
   	$('section#content').html($.mustache(template, result));
@@ -92,10 +79,9 @@ var Questions = {
     var template = $('#templates div#answers').html();
 
     _.each(result.answers, function(a) {
-      var newDate = new Date( );
-      newDate.setTime( a.creation_date*1000 );    
-      a.created_at = newDate.toDateString();
+      a.created_at = Helpers.convertInt2DateTime(a.creation_date);
       a.show_comments = (a.comments.length > 0);
+      a.owner.gravatar_url = Helpers.gravatarURL(a.owner.email_hash);
     });
     
     $('section#detail answers').html($.mustache(template, result));

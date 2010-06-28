@@ -22,11 +22,16 @@
 	<script src="/javascripts/md5.js"></script>
 	<script src="/javascripts/mustache.js"></script>
 	<script src="/javascripts/underscore.js"></script>
+	<script src="/javascripts/helpers.js"></script>
 	<script src="/javascripts/spinner.js"></script>
 	<script src="/javascripts/layout.js"></script>
 	<script src="/javascripts/prettify.js"></script>
 	<script src="/javascripts/questions.js"></script>
 	<script src="/javascripts/search.js"></script>
+	<script src="/javascripts/tags.js"></script>
+	<script src="/javascripts/users.js"></script>
+	<script src="/javascripts/about.js"></script>
+	<script src="/javascripts/badges.js"></script>
 	<script src="/javascripts/application.js"></script>
   
   <link rel="stylesheet/less" href="/stylesheets/all.less" type="text/css" />
@@ -35,6 +40,7 @@
   <link rel="stylesheet/less" href="/stylesheets/navigation.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/prettify.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/questions.less" type="text/css" />
+  <link rel="stylesheet/less" href="/stylesheets/users.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/slider.less" type="text/css" />
   <link rel="stylesheet/less" href="/stylesheets/spinner.less" type="text/css" />
 
@@ -66,7 +72,7 @@
 			<ul class="clearfix">
 				<li>
 				  <a href="#/questions">Questions<span>&darr;</span></a>
-				  <ul style="width: 87px; display: hidden;">
+				  <ul style="display: hidden;" class="questions">
 				    <li><span><a href="#/questions?sort=votes">votes</a></span></li>
 				    <li><span><a href="#/questions?sort=featured">featured</a></span></li>
 				    <li><span><a href="#/questions?sort=hot">hot</a></span></li>
@@ -76,10 +82,16 @@
 				</li>
 				<li><a href="#/questions/unanswered">Unaswered</a></li>
 				<li class="delimiter tags"><a href="#/tags"><span>&nbsp;&nbsp;</span>Tags</a></li>
-				<li class="users"><a href="#/users"><span>&nbsp;&nbsp;</span>Users</a></li>
+				<li class="users"><a href="#/users"><span>&nbsp;&nbsp;</span>Users<strong>&darr;</strong></a>
+				  <ul style="display: hidden;" class="users">
+				    <li><span><a href="#/users?sort=reputation">reputation</a></span></li>
+				    <li><span><a href="#/users?sort=creation">creation</a></span></li>
+				    <li><span><a href="#/users?sort=name">name</a></span></li>
+				  </ul>
+				</li>
 				<li class="badges"><a href="#/badges"><span>&nbsp;&nbsp;</span>Badges</a></li>
 				
-				<li class="delimiter"><a href="#">About</a></li>
+				<li class="delimiter"><a href="#/about">About</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -108,14 +120,24 @@
     
     <div id="users">
       <users>
+        <h1>{{title}}</h1>
         {{#users}}
-        <user>
-          <h2>{{display_name}}</h2>
-          <strong>Reputation:</strong> {{reputation}}<br />
-          <strong>Location:</strong> {{location}}
+        <user class="clearfix">
+          <img src="{{gravatar_url}}" alt="{{display_name}} gravatar" />
           <p>
-            {{{about_me}}}
+            <a href="#/users/{{user_id}}">{{display_name}}&nbsp;&raquo;</a><br />
+            <strong>Reputation:</strong> {{reputation}}<br />
+            <strong>Location:</strong> {{location}}<br />
+            <strong>Member since:</strong> {{created_at}}<br />
+            <strong>Last update:</strong> {{last_access_at}}<br />
           </p>
+          <ul>
+            {{#badge_counts}}
+            <li class="gold">&hearts; {{gold}}</li>
+            <li class="silver">&hearts; {{silver}}</li>
+            <li class="bronze">&hearts; {{bronze}}</li>
+            {{/badge_counts}}
+          </ul>
         </user>
         {{/users}}
       </users>
@@ -176,7 +198,7 @@
         </p>
         <user>
         {{#owner}}
-          <img src="http://www.gravatar.com/avatar/{{email_hash}}?s=40&d=mm&r=g" alt="{{display_name}} gravatar" />
+          <img src="{{gravatar_url}}" alt="{{display_name}} gravatar" />
           <span class="display_name">{{display_name}}</span>
           <span class="reputation">{{reputation}}</span>
         {{/owner}}

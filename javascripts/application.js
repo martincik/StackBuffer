@@ -33,15 +33,6 @@ $(document).bind('ajaxError', function (event, response, options, error) {
 
 jQuery(function($) {
 
-  $(document).bind('path:success:/users', function(event, result) {
-  	log('path::success::users');
-  	log(event);
-  	log(result);
-  	var template = $('#templates div#users').html();
-  	log(template);
-  	$('section#content').html($.mustache(template, result));
-  });
-
   $(document).bind('path:success:/stats', function(event, result) {
   	log('path::success::stats');
   	log(event);
