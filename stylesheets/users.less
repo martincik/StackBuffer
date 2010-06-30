@@ -9,60 +9,62 @@ users {
     background-color: #D1D8E2;
     color: #333;
   }
-}
+  
+  user {
+    padding: 15px;
+    color: #999;
+    border-bottom: 1px dashed #ccc;
 
-user {
-  padding: 15px;
-  color: #999;
-  border-bottom: 1px dashed #ccc;
-  
-  img {
-    float: left;
-    width: 60px;
-    padding-right: 15px;
-    padding-bottom: 15px;
-  }
-  
-  p {
-    float: left;
-    width: 270px;
-    display: block;
-  }
-  
-  ul {
-    float: right;
-    width: 70px;
-    text-align: right;
-    
-    li {
-      list-style: none;
-      padding: 4px 8px;
-      text-align: center;
-      background: #fff;
-      color: #777;
-      .rounded(10px);
-      margin-bottom: 5px;
-      opacity: .7;
+    img {
+      float: left;
+      width: 60px;
+      padding-right: 15px;
+      padding-bottom: 15px;
     }
-    
-    li.gold { background: gold; }
-    li.silver { background: silver; color: #fff; }
-    li.bronze { background: #CD7F32; color: #fff; }
+
+    p {
+      float: left;
+      width: 270px;
+      display: block;
+    }
+
+    ul {
+      float: right;
+      width: 70px;
+      text-align: right;
+
+      li {
+        list-style: none;
+        padding: 4px 8px;
+        text-align: center;
+        background: #fff;
+        color: #777;
+        .rounded(10px);
+        margin-bottom: 5px;
+        opacity: .7;
+      }
+
+      li.gold { background: gold; }
+      li.silver { background: silver; color: #fff; }
+      li.bronze { background: #CD7F32; color: #fff; }
+    }
+
+    a,
+    a:hover,
+    a:active {
+      font-size: 16px;
+      color: #0070CA;
+      font-weight: bold;
+      line-height: 1.4em;
+    }
+
+    a:hover {
+      background-color: yellow;
+    }
   }
   
-  a,
-  a:hover,
-  a:active {
-    font-size: 16px;
-    color: #0070CA;
-    font-weight: bold;
-    line-height: 1.4em;
-  }
-  
-  a:hover {
-    background-color: yellow;
-  }
+  user:nth-child(2n+1) { background-color: #EAEEF3; }
+  user:nth-child(2n) { background: #fff; }
 }
 
-user:nth-child(2n+1) { background-color: #EAEEF3; }
-user:nth-child(2n) { background: #fff; }
+

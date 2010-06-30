@@ -23,6 +23,7 @@
 	<script src="/javascripts/mustache.js"></script>
 	<script src="/javascripts/underscore.js"></script>
 	<script src="/javascripts/helpers.js"></script>
+	<script src="/javascripts/pagination.js"></script>
 	<script src="/javascripts/spinner.js"></script>
 	<script src="/javascripts/layout.js"></script>
 	<script src="/javascripts/prettify.js"></script>
@@ -121,49 +122,58 @@
     <div id="users">
       <users>
         <h1>{{title}}</h1>
-        {{#users}}
-        <user class="clearfix">
-          <img src="{{gravatar_url}}" alt="{{display_name}} gravatar" />
-          <p>
-            <a href="#/users/{{user_id}}">{{display_name}}&nbsp;&raquo;</a><br />
-            <strong>Reputation:</strong> {{reputation}}<br />
-            <strong>Location:</strong> {{location}}<br />
-            <strong>Member since:</strong> {{created_at}}<br />
-            <strong>Last update:</strong> {{last_access_at}}<br />
-          </p>
-          <ul>
-            {{#badge_counts}}
-            <li class="gold">&hearts; {{gold}}</li>
-            <li class="silver">&hearts; {{silver}}</li>
-            <li class="bronze">&hearts; {{bronze}}</li>
-            {{/badge_counts}}
-          </ul>
-        </user>
-        {{/users}}
+        {{>users_partial}}
       </users>
     </div>
+
+    <div id="users_partial">
+      {{#users}}
+      <user class="clearfix">
+        <img src="{{gravatar_url}}" alt="{{display_name}} gravatar" />
+        <p>
+          <a href="#/users/{{user_id}}">{{display_name}}&nbsp;&raquo;</a><br />
+          <strong>Reputation:</strong> {{reputation}}<br />
+          <strong>Location:</strong> {{location}}<br />
+          <strong>Member since:</strong> {{created_at}}<br />
+          <strong>Last update:</strong> {{last_access_at}}<br />
+        </p>
+        <ul>
+          {{#badge_counts}}
+          <li class="gold">&hearts; {{gold}}</li>
+          <li class="silver">&hearts; {{silver}}</li>
+          <li class="bronze">&hearts; {{bronze}}</li>
+          {{/badge_counts}}
+        </ul>
+      </user>
+      {{/users}}
+    </div>
+
     
     <div id="questions">
       <questions>
         <h1>{{title}}</h1>
-        {{#questions}}
-        <question class="clearfix">
-          <ratings class="clearfix">
-            <up_vote_count>&uarr;&nbsp;{{up_vote_count}}</up_vote_count>
-            <answer_count>A&nbsp;{{answer_count}}</answer_count>
-          </ratings>
-
-          <a href="#/questions/{{question_relative_url}}">{{title}}&nbsp;&raquo;</a><br />
-          <h3>by {{#owner}}{{display_name}}{{/owner}}&nbsp;on&nbsp;{{created_at}} viewed {{view_count}}x</h3>
-          <tags>
-          {{%IMPLICIT-ITERATOR}}
-          {{#tags}}
-            <tag>{{.}}</tag>
-          {{/tags}}
-          </tags>
-        </question>
-        {{/questions}}
+        {{>questions_partial}}
       </questions>
+    </div>
+    
+    <div id="questions_partial">
+      {{#questions}}
+      <question class="clearfix">
+        <ratings class="clearfix">
+          <up_vote_count>&uarr;&nbsp;{{up_vote_count}}</up_vote_count>
+          <answer_count>A&nbsp;{{answer_count}}</answer_count>
+        </ratings>
+
+        <a href="#/questions/{{question_relative_url}}">{{title}}&nbsp;&raquo;</a><br />
+        <h3>by {{#owner}}{{display_name}}{{/owner}}&nbsp;on&nbsp;{{created_at}} viewed {{view_count}}x</h3>
+        <tags>
+        {{%IMPLICIT-ITERATOR}}
+        {{#tags}}
+          <tag>{{.}}</tag>
+        {{/tags}}
+        </tags>
+      </question>
+      {{/questions}}
     </div>
     
     <div id="question">
