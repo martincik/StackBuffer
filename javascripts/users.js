@@ -18,6 +18,7 @@ var Users = {
         title = 'Users by creation date'
       }
       
+      Users.lastListURL = "#/" + event[0];
       Users.pagination.update(result.total, result.page, result.pagesize);
       Users.renderUsers(result, title);    	
     });

@@ -56,6 +56,7 @@ var Questions = {
     var question = result.questions[0];
     question.show_comments = (question.comments.length > 0);
     
+    $('section#detail').animate({ scrollTop: 0 }, "easeOutBack");
     $('section#detail').html($.mustache(template, question));
     
     // Hightight code with prettyprint plugin

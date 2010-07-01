@@ -7,14 +7,6 @@
   margin-bottom: 15px;
 }
 
-#detail ratings {
-  float: left;
-  margin: 0;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  margin-top: 15px;
-}
-
 up_vote_count, answer_count {
   padding: 4px 8px;
   text-align: center;
@@ -45,7 +37,7 @@ question {
   a,
   a:hover,
   a:active {
-    font-size: 16px;
+    font-size: 17px;
     color: #0070CA;
     font-weight: bold;
     line-height: 1.4em;
@@ -87,24 +79,53 @@ div.question-detail {
   max-width: 800px;
   min-width: 600px;
   
-  h1 {
-    font-size: 14pt;
-    border-bottom: 1px solid #111;
+  h1 { font-size: 16pt; }
+  h2 { font-size: 14pt; }
+  h3 { font-size: 13pt; }
+  h4, h5, h6 { font-size: 12pt; }
+  
+  h1.main { 
+    font-size: 18pt; 
+    border-bottom: 1px solid #222;
+    color: #222;
   }
+  
+  ul { margin-left: 15px; }
   
   p, 
   li {
-    padding: 5px 0;
     line-height: 1.4em;
     font-size: 12pt;
-    font-family: Georgia, sans;
+    font-family: 'Georgia';
+  }
+  
+  p {
+    padding: 10px 0;
   }
   
   pre {
     overflow: auto;
     width: auto;
     background: #fff;
-    margin: 10px 0;
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px solid #777;
+    
+    text-wrap: wrap;
+    white-space: pre-wrap;
+    /* css-3 */
+
+    white-space: -moz-pre-wrap;
+    /* Mozilla, since 1999 */
+
+    white-space: -pre-wrap;
+    /* Opera 4-6 */
+
+    white-space: -o-pre-wrap;
+    /* Opera 7 */
+
+    word-wrap: break-word;
+    /* Internet Explorer 5.5+ */
   }
   
   code {
@@ -133,10 +154,22 @@ comment {
 }
 
 answers {
-  padding-top: 10px;
+  padding-top: 30px;
 }
 
-answer {
-  border-bottom: 1px solid #777;
-  padding-bottom: 15px;
+answers answer {
+  border-bottom: 1px dashed #777;
+  padding: 20px;
+}
+
+answers answer:nth-child(2n+1) { background-color: #EAEEF3; }
+answers answer:nth-child(2n) { background: #fff; }
+
+answers answer user {
+  padding-top: 20px;
+}
+
+answers answer user span.up_votes_count {
+  font-size: 20pt;
+  padding-right: 10px;
 }

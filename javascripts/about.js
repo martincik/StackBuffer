@@ -7,7 +7,7 @@ var About = {
   
   registerTagsLoad: function() {
     Layout.livePath('success', /about/, function(event, result) {
-      $('section#detail').html("<h1 style='text-align: center;'>Not implemented yet! Sorry!</h1>");
+      $('section#detail').html($('section#templates div#about').html());
     });
   }
 };

@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 	<title>StackBuffer | awesome StackOverflow interface</title>
-
+  
 	<script src='http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js' type='text/javascript'></script>
   <script type='text/javascript'> 
     //<![CDATA[
@@ -57,7 +57,7 @@
   <header>
     <div id="header" class="clearfix">
       <div id="logo">
-        <h2>StackBuffer</h2>
+        <h1>StackBuffer</h1>
         <p>awesome Stackoverflow interface</p>
       </div>
       <div id="search">
@@ -178,7 +178,7 @@
     
     <div id="question">
       <div class="question-detail">
-        <h1>{{title}}</h1>
+        <h1 class="main">{{title}}</h1>
         <p>
           {{{body}}}
         </p>
@@ -197,22 +197,18 @@
     </div>
     
     <div id="answers">
-      <h1>Answers</h1>
+      <h1 class="main">Answers</h1>
       {{#answers}}
-      <answer class="clearfix">
-        <ratings class="clearfix">
-          <up_vote_count>&uarr;&nbsp;{{up_vote_count}}</up_vote_count>
-        </ratings>
+      <answer>
+        <user>
+          <span class="up_votes_count">&uarr;&nbsp;{{up_vote_count}}</span>
+          {{#owner}}
+            by <strong>{{display_name}}</strong> with reputation <strong>{{reputation}}</strong>
+          {{/owner}}
+        </user>
         <p>
           {{{body}}}
         </p>
-        <user>
-        {{#owner}}
-          <img src="{{gravatar_url}}" alt="{{display_name}} gravatar" />
-          <span class="display_name">{{display_name}}</span>
-          <span class="reputation">{{reputation}}</span>
-        {{/owner}}
-        </user>
         {{#show_comments}}
         <comments>
         {{#comments}}
@@ -224,6 +220,42 @@
         {{/show_comments}}
       </answer>
       {{/answers}}
+    </div>
+    
+    <div id="about">
+      <div class="question-detail">
+        <h1>What is StackBuffer.com?</h1>
+        <p class="clearfix">
+          <img src="http://martincik.com/wp-content/uploads/2009/11/Laco09.jpg" style="float: left; height: 100px; padding-right: 10px;" />
+          Hi, I'm Ladislav Martincik. Geek living in Barcelona, Spain enjoying his life managing projects and aside
+          programming his own stuff. I love to read, learn, help people and build stuff (not just programming).
+          You can find more about me at <a href="http://martincik.com">martincik.com</a> and you can follow me on 
+          twitter <a href="http://twitter.com/martincik">@martincik</a>.
+        </p>
+        <p>
+          StackBuffer is open source project providing <strong>HTML5 and CSS3</strong> interface for <a href="http://stackoverflow.com">StackOverflow</a> 
+          <a href="http://stackapps.com">API</a>.
+        </p>
+        <p>
+          This project is actually <strong>experiment</strong> trying to prove that you can write only HTML5, CSS3 and JavaScript without need to do any
+          backend programming. I consider this code as pretty bad so please don't use it. This was just prototype I build for myself and for fun.
+          If I would start again from scratch I would build this app different way.
+        </p>
+        <p>
+          This project is build on top of:
+        </p>
+        <ul>
+          <li><a href="http://www.google.com/chrome">Google Chrome</a> - Browser developed by Google</li>
+          <li><a href="http://documentcloud.github.com/underscore/">Underscore.js</a> - Underscore is a utility-belt library for JavaScript</li>
+          <li><a href="http://github.com/cloudhead/less.js/tree/">less.js</a> - LESS CSS in browser</li>
+          <li><a href="http://mustache.github.com/">mustache.js</a> - Logic-less templates</li>
+          <li><a href="http://code.google.com/p/google-code-prettify/">prettify.js</a> - A Javascript module and CSS file that allows syntax highlighting of source code</li>
+          <li><a href="http://jquery.com/">JQuery</a> - is a new kind of JavaScript Library</li>
+        </ul>
+        <p>
+          You can find this project on <a href="http://github.com">Github.com</a>
+        </p>
+      </div>
     </div>
     
   </section>
