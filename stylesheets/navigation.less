@@ -17,6 +17,7 @@
     text-align: right;
     float: left;
     list-style-type: none;
+    position: relative;
   }
   
   ul li > a,
@@ -34,6 +35,14 @@
     text-decoration: none;
   }
   
+  li:hover ul {
+    display: block;
+  }
+  
+  ul li > a > span {
+    padding-left: 10px;
+  }
+  
   ul li ul li span {
     display: block;
     text-align: right;
@@ -42,6 +51,8 @@
   
   ul li ul.questions {
     width: 87px;
+    top: 0;
+    left: 10px;
   }
   
   ul li ul li a {
@@ -59,6 +70,8 @@
   
   li > ul {
     z-index: 1020;
+    position: absolute;
+    display: none;
   }
   
   li > ul li {
@@ -89,6 +102,8 @@
   ul li > ul.users {
     width: 75px;
     height: 70px;
+    top: 0;
+    left: 10px;
   }
   
   li > ul > li {
