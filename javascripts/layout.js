@@ -1,4 +1,4 @@
-const API_VERSION = '0.9';
+const API_VERSION = '1.0';
 const API_URI = 'http://api.stackoverflow.com/' + API_VERSION;
 const ROOT_URL = '#/questions';
 
